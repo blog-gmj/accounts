@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Gabriel Jones Blog Systems</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics-compat.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: white;
+    }
+    .login-box {
+      text-align: left;
+      border: 1px solid #eee;
+      padding: 20px 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .login-box h1 {
+      color: #f68e1e;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #f68e1e;
+    }
+    input {
+      width: 100%;
+      padding: 5px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 8px;
+      background: #ddd;
+      border: none;
+    }
+    .footer {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>Gabriel Jones Blog Systems</h1>
+    <label for="email">login</label>
+    <input type="email" id="email" placeholder="Email">
+    <label for="password">password</label>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">login</button>
+    <div class="footer">Gabriel Jones Blog System</div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB5EiDTZFHwt53CgJFX7v6mUXBFjSk5fAo",
+      authDomain: "gabrielmatteojonesblogsystem.firebaseapp.com",
+      projectId: "gabrielmatteojonesblogsystem",
+      storageBucket: "gabrielmatteojonesblogsystem.firebasestorage.app",
+      messagingSenderId: "418124672475",
+      appId: "1:418124672475:web:06b5d2f4c6ab49caea0bfe",
+      measurementId: "G-67FMP0FED4"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const auth = firebase.auth();
+
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "home.html";
+        })
+        .catch(error => {
+          alert("Errore: " + error.message);
+        });
+    }
+  </script>
+</body>
+</html>
