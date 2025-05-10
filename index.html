@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Area Protetta</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <h1>Benvenuto nella tua area protetta</h1>
+  <button onclick="logout()">Logout</button>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB5EiDTZFHwt53CgJFX7v6mUXBFjSk5fAo",
+      authDomain: "gabrielmatteojonesblogsystem.firebaseapp.com",
+      projectId: "gabrielmatteojonesblogsystem",
+      storageBucket: "gabrielmatteojonesblogsystem.firebasestorage.app",
+      messagingSenderId: "418124672475",
+      appId: "1:418124672475:web:06b5d2f4c6ab49caea0bfe",
+      measurementId: "G-67FMP0FED4"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+
+    function logout() {
+      auth.signOut().then(() => {
+        window.location.href = "login.html";
+      });
+    }
+  </script>
+</body>
+</html>
